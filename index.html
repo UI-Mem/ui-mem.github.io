@@ -4,19 +4,15 @@
   <meta charset="utf-8">
   <meta name="description"
         content="UI-Mem: Self-Evolving Experience Memory for Online Reinforcement Learning in Mobile GUI Agents">
-  <meta name="keywords" content="UI-Mem, GUI Agents, Reinforcement Learning, LLM, Mobile AI">
+  <meta name="keywords" content="UI-Mem, RL, GUI Agents, LLM, Reinforcement Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UI-Mem: Self-Evolving Experience Memory for Online Reinforcement Learning in Mobile GUI Agents</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
-  <!-- <script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'G-PYVRSFMDRL');
@@ -25,487 +21,442 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- MathJax for LaTeX rendering -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Website Logo (Favicon) Modification -->
+  <link rel="icon" href="static/images/icon.png">
 
   <style>
     body {
       font-family: 'Noto Sans', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      color: #333;
-      background-color: #fcfcfc;
-      margin: 0;
-      padding: 0;
     }
-
-    a {
-      color: #3273dc;
-      text-decoration: none;
+    .title.is-1 {
+        font-family: 'Google Sans', sans-serif;
+        font-weight: 700;
+    }
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .footer .icon-link {
+        font-size: 25px;
+        color: #000;
+    }
+    .link-block a {
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     
-    a:hover {
-      color: #1e4b8f;
+    /* Custom CSS for Tabs */
+    .tabs-container {
+        margin-top: 20px;
+    }
+    .tabs-header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #dbdbdb;
+    }
+    .tab-btn {
+        padding: 12px 24px;
+        cursor: pointer;
+        font-weight: 600;
+        color: #4a4a4a;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s ease;
+        margin: 0 10px;
+        font-size: 1.1em;
+    }
+    .tab-btn:hover {
+        color: #3273dc;
+    }
+    .tab-btn.active {
+        color: #3273dc;
+        border-bottom-color: #3273dc;
+    }
+    .tab-content {
+        display: none;
+        animation: fadeIn 0.5s;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
+    /* Method Section Styling */
+    .method-box {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
     }
-
-    .hero {
-      text-align: center;
-      padding: 40px 0;
+    .method-title {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #202124;
     }
-
-    .title {
-      font-family: 'Google Sans', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: #2c3e50;
-    }
-
-    .authors {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-    }
-
-    .author-block {
-      display: inline-block;
-      margin-right: 10px;
-    }
-
-    .affiliations {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .publication-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .link-block {
-      background-color: #363636;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 24px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      transition: background-color 0.3s;
-    }
-
-    .link-block i {
-      margin-right: 6px;
-    }
-
-    .link-block:hover {
-      background-color: #4a4a4a;
-      color: #fff;
-    }
-
-    .link-block.disabled {
-      background-color: #b5b5b5;
-      cursor: default;
-    }
-
-    .section {
-      padding: 30px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .section:last-child {
-      border-bottom: none;
-    }
-
-    .section-title {
-      font-family: 'Google Sans', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 30px;
-      color: #2c3e50;
-    }
-
-    .abstract-text {
-      text-align: justify;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .image-container {
-      text-align: center;
-      margin: 30px 0;
-    }
-
-    .image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
     .caption {
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 10px;
-      font-style: italic;
-    }
-
-    /* Table Styles */
-    .table-container {
-      overflow-x: auto;
-      margin: 20px auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      margin: 0 auto;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #f5f5f5;
-      font-weight: 600;
-    }
-
-    tr:hover {
-      background-color: #f9f9f9;
-    }
-
-    .best {
-      font-weight: bold;
-      color: #d32f2f;
+        font-size: 0.9em;
+        color: #666;
+        margin-top: 10px;
+        text-align: center;
     }
     
+    /* Table Styling */
+    .results-table {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+    .results-table th, .results-table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+    .results-table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    .best-score {
+        font-weight: bold;
+        color: #d93025;
+    }
     .second-best {
-      font-weight: bold;
-      text-decoration: underline;
+        text-decoration: underline;
     }
-
-    /* Code block */
-    pre {
-      background-color: #f5f5f5;
-      padding: 15px;
-      border-radius: 5px;
-      overflow-x: auto;
-      font-size: 0.85rem;
-      text-align: left;
-    }
-
-    .method-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    
-    @media (max-width: 768px) {
-      .method-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .feature-box {
-      background: #fff;
-      border: 1px solid #eee;
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    .feature-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #209cee;
-    }
-    
-    /* Placeholder for missing images */
-    .img-placeholder {
-      width: 100%;
-      height: 300px;
-      background-color: #e0e0e0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      color: #777;
-      font-weight: bold;
-      border: 2px dashed #bbb;
-    }
-
   </style>
 </head>
 <body>
 
-<div class="container">
-  
-  <!-- Header Section -->
-  <div class="hero">
-    <h1 class="title">UI-Mem: Self-Evolving Experience Memory for<br>Online Reinforcement Learning in Mobile GUI Agents</h1>
-    
-    <div class="authors">
-      <span class="author-block">Han Xiao<sup>1*</sup>,</span>
-      <span class="author-block">Guozhi Wang<sup>2*</sup>,</span>
-      <span class="author-block">Hao Wang<sup>2*</sup>,</span>
-      <span class="author-block">Shilong Liu<sup>3</sup>,</span>
-      <span class="author-block">Yuxiang Chai<sup>1</sup>,</span>
-      <span class="author-block">Yue Pan<sup>2</sup>,</span><br>
-      <span class="author-block">Yufeng Zhou<sup>2</sup>,</span>
-      <span class="author-block">Xiaoxin Chen<sup>2</sup>,</span>
-      <span class="author-block">Yafei Wen<sup>2</sup>,</span>
-      <span class="author-block">Hongsheng Li<sup>1†</sup></span>
-    </div>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">UI-Mem: Self-Evolving Experience Memory for Online Reinforcement Learning in Mobile GUI Agents</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Han Xiao</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="#">Guozhi Wang</a><sup>2*</sup>,</span>
+            <span class="author-block">
+              <a href="#">Hao Wang</a><sup>2*</sup>,</span>
+            <span class="author-block">
+              <a href="#">Shilong Liu</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="#">Yuxiang Chai</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Yue Pan</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Yufeng Zhou</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Xiaoxin Chen</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Yafei Wen</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Hongsheng Li</a><sup>1†</sup>
+            </span>
+          </div>
 
-    <div class="affiliations">
-      <span class="author-block"><sup>1</sup>CUHK MMLab</span>
-      <span class="author-block"><sup>2</sup>vivo AI Lab</span>
-      <span class="author-block"><sup>3</sup>Princeton University</span><br>
-      <span class="author-block"><sup>*</sup>Equal Contribution</span>
-      <span class="author-block"><sup>†</sup>Corresponding Author</span>
-    </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>CUHK MMLab,</span>
+            <span class="author-block"><sup>2</sup>vivo AI Lab,</span>
+            <span class="author-block"><sup>3</sup>Princeton University</span>
+          </div>
+          
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal Contribution, <sup>†</sup>Corresponding Author</span>
+          </div>
 
-    <div class="publication-links">
-      <a href="#" class="link-block">
-        <i class="fas fa-file-pdf"></i> Paper
-      </a>
-      <a href="#" class="link-block">
-        <i class="fab fa-arxiv"></i> arXiv
-      </a>
-      <a href="#" class="link-block disabled">
-        <i class="fab fa-github"></i> Code (Coming Soon)
-      </a>
-      <a href="#" class="link-block disabled">
-        <i class="fas fa-model"></i> Model (Coming Soon)
-      </a>
-      <a href="#" class="link-block disabled">
-        <i class="fas fa-database"></i> Data (Coming Soon)
-      </a>
-    </div>
-  </div>
-
-  <!-- Teaser Section -->
-  <div class="section">
-    <div class="image-container">
-      <!-- REPLACE WITH YOUR FIGURE 1 IMAGE -->
-      <img src="./static/images/intro.pdf" alt="Comparison of RL paradigms" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="img-placeholder" style="display:none;">Figure 1: Comparison of RL paradigms (Place teaser.png in static/images)</div>
-      <p class="caption">
-        <strong>Comparison of RL paradigms for GUI agents.</strong> (a) Standard Online RL suffers from sparse rewards. (b) Experience Replay and (c) Dense Reward address sample efficiency and credit assignment respectively, but both lack mechanisms for Cross-Task Transfer. (d) Our Framework introduces an Evolving Memory that provides hierarchical guidance for exploration and continuously updates itself by abstracting successful plans and failure patterns from new trajectories, enabling cross-task knowledge transfer.
-      </p>
-    </div>
-  </div>
-
-  <!-- Abstract Section -->
-  <div class="section">
-    <h2 class="section-title">Abstract</h2>
-    <div class="abstract-text">
-      <p>
-        Online Reinforcement Learning (RL) offers a promising paradigm for enhancing GUI agents through direct environment interaction. However, its effectiveness is severely hindered by inefficient credit assignment in long-horizon tasks and repetitive errors across tasks due to the lack of experience transfer. To address these challenges, we propose <strong>UI-Mem</strong>, a novel framework that enhances GUI online RL with a <strong>Hierarchical Experience Memory</strong>. Unlike traditional replay buffers, our memory accumulates structured knowledge, including high-level workflows, subtask skills, and failure patterns. These experiences are stored as parameterized templates that enable cross-task and cross-application transfer. 
-      </p>
-      <p>
-        To effectively integrate memory guidance into online RL, we introduce <strong>Stratified Group Sampling</strong>, which injects varying levels of guidance across trajectories within each rollout group to maintain outcome diversity, driving the unguided policy toward internalizing guided behaviors. Furthermore, a <strong>Self-Evolving Loop</strong> continuously abstracts novel strategies and errors to keep the memory aligned with the agent's evolving policy. Experiments on online GUI benchmarks demonstrate that UI-Mem significantly outperforms traditional RL baselines and static reuse strategies, with strong generalization to unseen applications.
-
-      </p>
-    </div>
-  </div>
-
-  <!-- Method Section -->
-  <div class="section">
-    <h2 class="section-title">Method</h2>
-    
-    <div class="image-container">
-      <!-- REPLACE WITH YOUR FIGURE 2 IMAGE -->
-      <img src="./static/images/pipeline.pdf" alt="UI-Mem Framework Overview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="img-placeholder" style="display:none;">Figure 2: Framework Overview (Place framework.png in static/images)</div>
-      <p class="caption">
-        <strong>Overview of the UI-Mem framework.</strong> Given a task instruction, the agent retrieves hierarchical experience including Workflows, Subtask Skills, and Failure Patterns. We employ \textbf{Stratified Group Sampling} to generate a group of trajectories under varying levels of guidance (Strong, Weak, and No Guidance), enabling effective advantage estimation for \textbf{Policy Optimization}. Finally, a \textbf{Self-Evolving Loop} extracts abstract plans from successful trajectories and diagnoses from failures to update the memory, facilitating continuous refinement and cross-task transfer.
-      </p>
-    </div>
-
-    <div class="method-grid">
-      <div class="feature-box">
-        <div class="feature-title"><i class="fas fa-layer-group"></i> Hierarchical Experience Memory</div>
-        <p>
-          We construct a structured memory pool that stores reusable knowledge at three levels:
-          <ul>
-            <li><strong>Workflows ($\mathcal{W}$):</strong> High-level plans capturing global strategies.</li>
-            <li><strong>Subtask Skills ($\Sigma$):</strong> Atomic capabilities like "search for item" or "fill form".</li>
-            <li><strong>Failure Patterns ($\mathcal{F}$):</strong> Common failure modes to prevent repetitive errors.</li>
-          </ul>
-          Experiences are stored as <em>parameterized templates</em> (e.g., "Send email to {{recipient}}") to enable cross-task transfer.
-        </p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-title"><i class="fas fa-random"></i> Stratified Group Sampling</div>
-        <p>
-          To prevent the agent from becoming dependent on guidance, we inject varying levels of memory guidance into the GRPO rollout group:
-          <ul>
-            <li><strong>Strong Guidance:</strong> Full hierarchical plans to stabilize training.</li>
-            <li><strong>Weak Guidance:</strong> Only high-level workflows to bridge planning and acting.</li>
-            <li><strong>No Guidance:</strong> Pure exploration for unbiased policy estimation.</li>
-          </ul>
-        </p>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2026.xxxxx"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2026.xxxxx"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+              <!-- Model Link with Modified Logo. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- Changed to a cubes icon to represent model architecture/weights -->
+                      <i class="fas fa-cubes"></i>
+                  </span>
+                  <span>Model (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Data Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="feature-box" style="margin-top: 20px;">
-      <div class="feature-title"><i class="fas fa-sync-alt"></i> Self-Evolving Loop</div>
-      <p>
-        A continuous loop that refines memory during training. Successful trajectories are abstracted into new plans (replacing concrete values with placeholders), while failed trajectories generate failure diagnoses. This ensures the memory co-evolves with the policy.
-      </p>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="has-text-centered">
+        <img src="static/images/intro.png" alt="Comparison of RL paradigms" style="width: 100%; max-width: 800px;">
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Comparison of RL paradigms for GUI agents. (a) Standard Online RL suffers from sparse rewards. (b) Experience Replay and (c) Dense Reward address sample efficiency and credit assignment respectively, but both lack mechanisms for Cross-Task Transfer. (d) Our Framework introduces an Evolving Memory that provides hierarchical guidance for exploration and continuously updates itself by abstracting successful plans and failure patterns from new trajectories, enabling cross-task knowledge transfer.
+      </h2>
     </div>
   </div>
+</section>
 
-  <!-- Results Section -->
-  <div class="section">
-    <h2 class="section-title">Experimental Results</h2>
-    
-    <p style="text-align: center; margin-bottom: 20px;">
-      We evaluate UI-Mem on <strong>AndroidWorld</strong> and <strong>AndroidLab</strong> benchmarks.
-    </p>
-
-    <h3>🏆 AndroidWorld Leaderboard</h3>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Params</th>
-            <th>Success Rate (%)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="text-align: left;">Seed1.8 (Seed, 2025a)</td>
-            <td>-</td>
-            <td>70.7</td>
-          </tr>
-          <tr>
-            <td style="text-align: left;">Gemini-2.5-Pro</td>
-            <td>-</td>
-            <td>69.7</td>
-          </tr>
-          <tr>
-            <td style="text-align: left;">UI-Tars-1.5</td>
-            <td>-</td>
-            <td>64.2</td>
-          </tr>
-          <tr style="border-top: 2px solid #ccc;">
-            <td style="text-align: left;">Qwen3-VL-8B (Base)</td>
-            <td>8B</td>
-            <td>47.6</td>
-          </tr>
-          <tr>
-            <td style="text-align: left;"><strong>UI-Mem-8B (Ours)</strong></td>
-            <td>8B</td>
-            <td class="second-best">66.8</td>
-          </tr>
-          <tr style="background-color: #e8f5e9;">
-            <td style="text-align: left;"><strong>UI-Mem-8B* (Ours + Retrieval)</strong></td>
-            <td>8B</td>
-            <td class="best">71.1</td>
-          </tr>
-          <tr style="border-top: 2px solid #ccc;">
-            <td style="text-align: left;">Qwen3-VL-4B (Base)</td>
-            <td>4B</td>
-            <td>45.3</td>
-          </tr>
-          <tr>
-            <td style="text-align: left;"><strong>UI-Mem-4B (Ours)</strong></td>
-            <td>4B</td>
-            <td>58.2</td>
-          </tr>
-          <tr style="background-color: #e8f5e9;">
-            <td style="text-align: left;"><strong>UI-Mem-4B* (Ours + Retrieval)</strong></td>
-            <td>4B</td>
-            <td>62.5</td>
-          </tr>
-        </tbody>
-      </table>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Online Reinforcement Learning (RL) offers a promising paradigm for enhancing GUI agents through direct environment interaction. However, its effectiveness is severely hindered by inefficient credit assignment in long-horizon tasks and repetitive errors across tasks due to the lack of experience transfer. To address these challenges, we propose <strong>UI-Mem</strong>, a novel framework that enhances GUI online RL with a <strong>Hierarchical Experience Memory</strong>. Unlike traditional replay buffers, our memory accumulates structured knowledge, including high-level workflows, subtask skills, and failure patterns. These experiences are stored as parameterized templates that enable cross-task and cross-application transfer.
+          </p>
+          <p>
+            To effectively integrate memory guidance into online RL, we introduce <strong>Stratified Group Sampling</strong>, which injects varying levels of guidance across trajectories within each rollout group to maintain outcome diversity, driving the unguided policy toward internalizing guided behaviors. Furthermore, a <strong>Self-Evolving Loop</strong> continuously abstracts novel strategies and errors to keep the memory aligned with the agent's evolving policy. Experiments on online GUI benchmarks demonstrate that UI-Mem significantly outperforms traditional RL baselines and static reuse strategies, with strong generalization to unseen applications.
+          </p>
+        </div>
+      </div>
     </div>
-    <p class="caption">
-      * denotes inference-time memory retrieval. UI-Mem-8B outperforms closed-source commercial APIs like Gemini-2.5-Pro and Seed1.8.
-    </p>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method</h2>
+    
+    <!-- Main Framework Figure -->
+    <div class="columns is-centered">
+        <div class="column is-full has-text-centered">
+            <img src="static/images/pipeline.png" alt="UI-Mem Framework Overview" style="width: 100%; margin-bottom: 20px;">
+            <p class="caption has-text-justified">
+                <strong>Overview of the proposed UI-Mem framework.</strong> Given a task instruction, the agent retrieves hierarchical experience including Workflows, Subtask Skills, and Failure Patterns. We employ Stratified Group Sampling to generate a group of trajectories under varying levels of guidance, enabling effective advantage estimation for Policy Optimization. Finally, a Self-Evolving Loop extracts abstract plans from successful trajectories and diagnoses from failures to update the memory.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Subsection 1: Hierarchical Experience Memory -->
+    <div class="columns is-centered">
+        <div class="column is-full">
+            <div class="content">
+                <h3 class="title is-4">(1) Hierarchical Experience Memory</h3>
+                <p>
+                    UI-Mem constructs a structured memory pool that stores reusable workflows, subtask skills, and failure patterns as parameterized templates. This hierarchical structure allows the agent to retrieve relevant past experience and instantiate it to form specific plans when facing novel tasks.
+                </p>
+                <div class="has-text-centered" style="margin-top: 20px; margin-bottom: 20px;">
+                    <img src="static/images/figure_retrieval.png" alt="Hierarchical Experience Retrieval" style="width: 80%; border: 1px solid #eee; border-radius: 5px;">
+                    <p class="caption">
+                        <strong>Illustration of the Hierarchical Experience Retrieval process.</strong> Given a task instruction, the system performs template matching to extract specific variables (e.g., city names) and instantiates the retrieved experience to form a concrete plan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subsection 2: Memory-Guided Exploration -->
+    <div class="columns is-centered">
+        <div class="column is-full">
+            <div class="content">
+                <h3 class="title is-4">(2) Memory-Guided Exploration</h3>
+                <p>
+                    To leverage memory effectively, we introduce a mechanism which utilizes <strong>Stratified Group Sampling</strong>. This approach injects different strengths of memory guidance (Strong, Weak, and No Guidance) into the same GRPO rollout group.
+                </p>
+                <ul>
+                    <li><strong>Strong Guidance:</strong> Provides full hierarchical plans to stabilize training and ensure high-quality trajectories.</li>
+                    <li><strong>Weak Guidance:</strong> Provides only high-level workflows, forcing the agent to learn low-level execution details.</li>
+                    <li><strong>No Guidance:</strong> Encourages pure exploration to provide an unbiased estimate of the agent's internalized policy.</li>
+                </ul>
+                <p>
+                    This strategy facilitates effective advantage estimation while preventing the agent from becoming dependent on external guidance.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subsection 3: Self-Evolving Loop -->
+    <div class="columns is-centered">
+        <div class="column is-full">
+            <div class="content">
+                <h3 class="title is-4">(3) Self-Evolving Loop</h3>
+                <p>
+                    Finally, the <strong>Self-Evolving Loop</strong> continuously refines the memory by extracting novel experience from the newly collected trajectories. This enables progressive improvement and cross-task transfer.
+                </p>
+                <div class="has-text-centered" style="margin-top: 20px;">
+                    <img src="static/images/figure_update.png" alt="Self-Evolving Loop" style="width: 60%; border: 1px solid #eee; border-radius: 5px;">
+                    <p class="caption">
+                        <strong>The Self-Evolving Loop.</strong> Successful plans and failure causes are extracted from new trajectories to continually refine the memory and guide next rollouts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Experimental Results</h2>
+    
+    <!-- Tabs Container -->
+    <div class="tabs-container">
+        <div class="tabs-header">
+            <div class="tab-btn active" onclick="openTab(event, 'AndroidWorld')">AndroidWorld</div>
+            <div class="tab-btn" onclick="openTab(event, 'AndroidLab')">AndroidLab</div>
+        </div>
+
+        <!-- AndroidWorld Content -->
+        <div id="AndroidWorld" class="tab-content active">
+            <div class="content has-text-centered">
+                <p>Performance comparison on the <strong>AndroidWorld</strong> benchmark. * denotes inference-time memory retrieval.</p>
+                <table class="results-table table is-striped is-hoverable">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Params</th>
+                            <th>Success Rate (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Seed1.5-VL</td><td>-</td><td>62.1</td></tr>
+                        <tr><td>UI-Tars-1.5</td><td>-</td><td>64.2</td></tr>
+                        <tr><td>Gemini-2.5-Pro</td><td>-</td><td>69.7</td></tr>
+                        <tr><td>Seed1.8</td><td>-</td><td><span class="second-best">70.7</span></td></tr>
+                        <tr style="border-top: 2px solid #ccc;"><td>Qwen3-VL-4B (Base)</td><td>4B</td><td>45.3</td></tr>
+                        <tr><td>UI-Mem-4B (Ours)</td><td>4B</td><td>58.2</td></tr>
+                        <tr><td><strong>UI-Mem-4B* (Ours)</strong></td><td>4B</td><td>62.5</td></tr>
+                        <tr style="border-top: 2px solid #ccc;"><td>Qwen3-VL-8B (Base)</td><td>8B</td><td>47.6</td></tr>
+                        <tr><td>UI-Mem-8B (Ours)</td><td>8B</td><td>66.8</td></tr>
+                        <tr><td><strong>UI-Mem-8B* (Ours)</strong></td><td>8B</td><td><span class="best-score">71.1</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- AndroidLab Content -->
+        <div id="AndroidLab" class="tab-content">
+            <div class="content has-text-centered">
+                <p>Performance comparison on the <strong>AndroidLab</strong> benchmark.</p>
+                <table class="results-table table is-striped is-hoverable">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Sub-Goal SR</th>
+                            <th>Reasonable Op Ratio</th>
+                            <th>Success Rate (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>GPT-4o</td><td>35.0</td><td>85.4</td><td>31.2</td></tr>
+                        <tr><td>AutoGLM</td><td>-</td><td>-</td><td>36.2</td></tr>
+                        <tr><td>MobileRL (7B)</td><td>-</td><td>-</td><td>42.5</td></tr>
+                        <tr><td>UI-Genie-Agent (7B)</td><td>46.3</td><td>91.4</td><td>38.7</td></tr>
+                        <tr><td>UI-TARS-1.5-7B</td><td>49.4</td><td>92.5</td><td>40.6</td></tr>
+                        <tr style="border-top: 2px solid #ccc; background-color: #eef6fc;">
+                            <td><strong>UI-Mem-8B* (Ours)</strong></td>
+                            <td><span class="best-score">56.0</span></td>
+                            <td><span class="best-score">94.9</span></td>
+                            <td><span class="best-score">44.9</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Analysis</h2>
+    
+    <div class="columns is-centered">
+        <div class="column is-full">
+            <h4 class="title is-4">Impact of Memory Guidance</h4>
+            <div class="has-text-centered">
+                <img src="static/images/qualitative_guidance.png" alt="Impact of Memory Guidance" style="width: 100%; border: 1px solid #ddd;">
+                <p class="caption has-text-justified">
+                    <strong>Trajectory analysis on the task "Create a new contact...".</strong> 
+                    <strong>Top (Reward 1.0):</strong> Full memory guidance yields a perfect execution. 
+                    <strong>Middle (Reward 0.6):</strong> Weak guidance results in incomplete execution where the agent misses the name. 
+                    <strong>Bottom (Reward 0):</strong> Lack of memory results in a total failure.
+                </p>
+            </div>
+        </div>
+    </div>
 
     <br>
 
-    <h3>📊 AndroidLab Performance</h3>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Sub-Goal SR</th>
-            <th>Reasonable Op Ratio</th>
-            <th>Success Rate</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="text-align: left;">GPT-4o</td>
-            <td>35.0</td>
-            <td>85.4</td>
-            <td>31.2</td>
-          </tr>
-          <tr>
-            <td style="text-align: left;">AutoGLM</td>
-            <td>-</td>
-            <td>-</td>
-            <td>36.2</td>
-          </tr>
-          <tr>
-            <td style="text-align: left;">MobileRL (7B)</td>
-            <td>-</td>
-            <td>-</td>
-            <td>42.5</td>
-          </tr>
-          <tr style="background-color: #e8f5e9;">
-            <td style="text-align: left;"><strong>UI-Mem-8B* (Ours)</strong></td>
-            <td class="best">56.0</td>
-            <td class="best">94.9</td>
-            <td class="best">44.9</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="columns is-centered">
+        <div class="column is-full">
+            <h4 class="title is-4">Error Correction via Diagnosis</h4>
+            <div class="has-text-centered">
+                <img src="static/images/qualitative_diagnosis.png" alt="Error Correction via Diagnosis" style="width: 100%; border: 1px solid #ddd;">
+                <p class="caption has-text-justified">
+                    <strong>Visualizing the Failure Diagnosis mechanism.</strong> The system identifies the navigation error in the first rollout (navigating back instead of entering the list) and generates a specific <strong>Correction Guideline</strong>, enabling success in the second-round rollout.
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Qualitative Section -->
-  <div class="section">
-    <h2 class="section-title">Qualitative Analysis</h2>
-    <div class="image-container">
-      <!-- REPLACE WITH YOUR FIGURE 14 IMAGE -->
-      <img src="./static/images/qualitative.png" alt="Qualitative Examples" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="img-placeholder" style="display:none;">Figure 14: Qualitative Examples (Place qualitative.png in static/images)</div>
-      <p class="caption">
-        <strong>Impact of Memory Guidance.</strong> Top: Full memory guidance leads to perfect execution. Middle: Weak guidance results in partial completion. Bottom: No guidance leads to failure. This validates that our stratified sampling provides diverse data for effective RL.
-      </p>
-    </div>
   </div>
+</section>
 
-  <!-- BibTeX Section -->
-  <div class="section">
-    <h2 class="section-title">BibTeX</h2>
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
     <pre><code>@article{xiao2026uimem,
   title={UI-Mem: Self-Evolving Experience Memory for Online Reinforcement Learning in Mobile GUI Agents},
   author={Xiao, Han and Wang, Guozhi and Wang, Hao and Liu, Shilong and Chai, Yuxiang and Pan, Yue and Zhou, Yufeng and Chen, Xiaoxin and Wen, Yafei and Li, Hongsheng},
@@ -513,17 +464,61 @@
   year={2026}
 }</code></pre>
   </div>
+</section>
 
-  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem;">
-    <p>
-      This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-    </p>
-    <p>
-      Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-    </p>
-  </footer>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/abs/2026.xxxxx">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="#" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
-</div>
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        
+        // Hide all tab content
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+
+        // Remove active class from all tab buttons
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        setTimeout(() => {
+            document.getElementById(tabName).classList.add("active");
+        }, 10);
+        evt.currentTarget.className += " active";
+    }
+</script>
 
 </body>
 </html>
