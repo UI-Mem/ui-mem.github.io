@@ -213,7 +213,7 @@
               <!-- Model Link with Hugging Face Logo. -->
               <span class="link-block">
                 <a href="#"
-                   class="external-link button is-normal is-rounded is-dark" disabled>
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <p style="font-size:18px">🤗</p>
                   </span>
@@ -223,7 +223,7 @@
               <!-- Data Link with Hugging Face Logo. -->
               <span class="link-block">
                 <a href="#"
-                   class="external-link button is-normal is-rounded is-dark" disabled>
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <p style="font-size:18px">🤗</p>
                   </span>
@@ -244,7 +244,7 @@
       <div class="has-text-centered">
         <img src="static/images/intro.png" alt="Comparison of RL paradigms" style="width: 60%; max-width: 800px;">
       </div>
-      <p class="subtitle has-text-centered">
+      <p class="caption">
         Comparison of RL paradigms for GUI agents. (a) Standard Online RL suffers from sparse rewards. (b) Experience Replay and (c) Dense Reward address sample efficiency and credit assignment respectively, but both lack mechanisms for Cross-Task Transfer. (d) Our Framework introduces an Evolving Memory that provides hierarchical guidance for exploration and continuously updates itself by abstracting successful plans and failure patterns from new trajectories, enabling cross-task knowledge transfer.
       </p>
     </div>
@@ -291,7 +291,7 @@
     <div class="columns is-centered">
         <div class="column is-full">
             <div class="content">
-                <h3 class="title is-4">(1) Hierarchical Experience Memory</h3>
+                <h3 class="title is-4">Hierarchical Experience Memory</h3>
                 <p>
                     UI-Mem constructs a structured memory pool that stores reusable workflows, subtask skills, and failure patterns as parameterized templates. This hierarchical structure allows the agent to retrieve relevant past experience and instantiate it to form specific plans when facing novel tasks.
                 </p>
@@ -309,7 +309,7 @@
     <div class="columns is-centered">
         <div class="column is-full">
             <div class="content">
-                <h3 class="title is-4">(2) Memory-Guided Exploration</h3>
+                <h3 class="title is-4">Memory-Guided Exploration</h3>
                 <p>
                     To leverage memory effectively, we introduce a mechanism which utilizes <strong>Stratified Group Sampling</strong>. This approach injects different strengths of memory guidance (Strong, Weak, and No Guidance) into the same GRPO rollout group.
                 </p>
@@ -329,7 +329,7 @@
     <div class="columns is-centered">
         <div class="column is-full">
             <div class="content">
-                <h3 class="title is-4">(3) Self-Evolving Loop</h3>
+                <h3 class="title is-4">Self-Evolving Loop</h3>
                 <p>
                     Finally, the <strong>Self-Evolving Loop</strong> continuously refines the memory by extracting novel experience from the newly collected trajectories. This enables progressive improvement and cross-task transfer.
                 </p>
@@ -373,13 +373,13 @@
                         <tr><td>Seed1.5-VL</td><td>-</td><td>62.1</td></tr>
                         <tr><td>UI-Tars-1.5</td><td>-</td><td>64.2</td></tr>
                         <tr><td>Gemini-2.5-Pro</td><td>-</td><td>69.7</td></tr>
-                        <tr><td>Seed1.8</td><td>-</td><td><span class="second-best">70.7</span></td></tr>
+                        <tr><td>Seed1.8</td><td>-</td><td>70.7</td></tr>
                         <tr style="border-top: 2px solid #ccc;"><td>Qwen3-VL-4B (Base)</td><td>4B</td><td>45.3</td></tr>
                         <tr><td>UI-Mem-4B (Ours)</td><td>4B</td><td>58.2</td></tr>
                         <tr><td><strong>UI-Mem-4B* (Ours)</strong></td><td>4B</td><td>62.5</td></tr>
                         <tr style="border-top: 2px solid #ccc;"><td>Qwen3-VL-8B (Base)</td><td>8B</td><td>47.6</td></tr>
-                        <tr><td>UI-Mem-8B (Ours)</td><td>8B</td><td>66.8</td></tr>
-                        <tr><td><strong>UI-Mem-8B* (Ours)</strong></td><td>8B</td><td><span class="best-score">71.1</span></td></tr>
+                        <tr style="background-color: #eef6fc;"><td>UI-Mem-8B (Ours)</td><td>8B</td><td>66.8</td></tr>
+                        <tr style="background-color: #eef6fc;"><td><strong>UI-Mem-8B* (Ours)</strong></td><td>8B</td><td>71.1</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -388,7 +388,7 @@
         <!-- AndroidLab Content -->
         <div id="AndroidLab" class="tab-content">
             <div class="content has-text-centered">
-                <p>Performance comparison on the <strong>AndroidLab</strong> benchmark.</p>
+                <p>Performance comparison on the <strong>AndroidLab</strong> benchmark. * denotes inference-time memory retrieval.</p>
                 <table class="results-table table is-striped is-hoverable">
                     <thead>
                         <tr>
@@ -401,17 +401,31 @@
                     <tbody>
                         <tr><td>GPT-4o</td><td>35.0</td><td>85.4</td><td>31.2</td></tr>
                         <tr><td>AutoGLM</td><td>-</td><td>-</td><td>36.2</td></tr>
-                        <tr><td>MobileRL (7B)</td><td>-</td><td>-</td><td>42.5</td></tr>
-                        <tr><td>UI-Genie-Agent (7B)</td><td>46.3</td><td>91.4</td><td>38.7</td></tr>
+                        <tr style="border-top: 2px solid #ccc;"><td>UI-Genie-Agent-3B</td><td>35.4</td><td>90.6</td><td>28.8</td></tr>
+                        <tr><td>Qwen3-VL-4B (Base)</td><td>48.2</td><td>90.5</td><td>37.0</td></tr>
+                        <tr style="background-color: #eef6fc;">
+                            <td><strong>UI-Mem-4B (Ours)</strong></td>
+                            <td><span class="second-best">49.5</span></td>
+                            <td><span class="second-best">93.5</span></td>
+                            <td><span class="second-best">37.7</span></td>
+                        </tr>
+                        <tr style="background-color: #eef6fc;">
+                            <td><strong>UI-Mem-4B* (Ours)</strong></td>
+                            <td><span class="best-score">51.9</span></td>
+                            <td><span class="best-score">94.6</span></td>
+                            <td><span class="best-score">39.9</span></td>
+                        </tr>
+                        <tr style="border-top: 2px solid #ccc;"><td>UI-Genie-Agent-7B</td><td>46.3</td><td>91.4</td><td>38.7</td></tr>
                         <tr><td>UI-TARS-1.5-7B</td><td>49.4</td><td>92.5</td><td>40.6</td></tr>
+                        <tr><td>MobileRL (7B)</td><td>-</td><td>-</td><td>42.5</td></tr>
                         <tr><td>Qwen3-VL-8B (Base)</td><td>45.3</td><td>91.8</td><td>34.8</td></tr>
-                        <tr style="border-top: 2px solid #ccc; background-color: #eef6fc;">
+                        <tr style="background-color: #eef6fc;">
                             <td><strong>UI-Mem-8B (Ours)</strong></td>
                             <td><span class="second-best">52.7</span></td>
                             <td>>90.9</td>
                             <td><span class="second-best">43.5</span></td>
                         </tr>
-                        <tr style="border-top: 2px solid #ccc; background-color: #eef6fc;">
+                        <tr style="background-color: #eef6fc;">
                             <td><strong>UI-Mem-8B* (Ours)</strong></td>
                             <td><span class="best-score">56.0</span></td>
                             <td><span class="best-score">94.9</span></td>
@@ -448,7 +462,7 @@
 
     <div class="columns is-centered">
         <div class="column is-full">
-            <h4 class="title is-4">Error Correction via Diagnosis</h4>
+            <h4 class="title is-4">Error Correction via Failure Diagnosis</h4>
             <div class="has-text-centered">
                 <img src="static/images/qualitative_diagnosis.png" alt="Error Correction via Diagnosis" style="width: 100%; border: 1px solid #ddd;">
                 <p class="caption has-text-justified">
