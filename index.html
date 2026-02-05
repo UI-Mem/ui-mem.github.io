@@ -268,8 +268,8 @@
       <span class="author-block">Hao Wang<sup>2*</sup>,</span>
       <span class="author-block">Shilong Liu<sup>3</sup>,</span>
       <span class="author-block">Yuxiang Chai<sup>1</sup>,</span>
-      <span class="author-block">Yue Pan<sup>2</sup>,</span>
-      <span class="author-block">Yufeng Zhou<sup>2</sup>,</span><br>
+      <span class="author-block">Yue Pan<sup>2</sup>,</span><br>
+      <span class="author-block">Yufeng Zhou<sup>2</sup>,</span>
       <span class="author-block">Xiaoxin Chen<sup>2</sup>,</span>
       <span class="author-block">Yafei Wen<sup>2</sup>,</span>
       <span class="author-block">Hongsheng Li<sup>1†</sup></span>
@@ -294,7 +294,10 @@
         <i class="fab fa-github"></i> Code (Coming Soon)
       </a>
       <a href="#" class="link-block disabled">
-        <i class="fas fa-database"></i> Data
+        <i class="fas fa-model"></i> Model (Coming Soon)
+      </a>
+      <a href="#" class="link-block disabled">
+        <i class="fas fa-database"></i> Data (Coming Soon)
       </a>
     </div>
   </div>
@@ -303,10 +306,10 @@
   <div class="section">
     <div class="image-container">
       <!-- REPLACE WITH YOUR FIGURE 1 IMAGE -->
-      <img src="./static/images/teaser.png" alt="Comparison of RL paradigms" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <img src="./static/images/intro.pdf" alt="Comparison of RL paradigms" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
       <div class="img-placeholder" style="display:none;">Figure 1: Comparison of RL paradigms (Place teaser.png in static/images)</div>
       <p class="caption">
-        <strong>Figure 1. Comparison of RL paradigms for GUI agents.</strong> (a) Standard Online RL suffers from sparse rewards. (b) Experience Replay and (c) Dense Reward address sample efficiency but lack transfer. <strong>(d) UI-Mem (Ours)</strong> introduces an Evolving Memory that provides hierarchical guidance and continuously updates itself.
+        <strong>Comparison of RL paradigms for GUI agents.</strong> (a) Standard Online RL suffers from sparse rewards. (b) Experience Replay and (c) Dense Reward address sample efficiency and credit assignment respectively, but both lack mechanisms for Cross-Task Transfer. (d) Our Framework introduces an Evolving Memory that provides hierarchical guidance for exploration and continuously updates itself by abstracting successful plans and failure patterns from new trajectories, enabling cross-task knowledge transfer.
       </p>
     </div>
   </div>
@@ -316,24 +319,25 @@
     <h2 class="section-title">Abstract</h2>
     <div class="abstract-text">
       <p>
-        Online Reinforcement Learning (RL) offers a promising paradigm for enhancing GUI agents through direct environment interaction. However, its effectiveness is severely hindered by inefficient credit assignment in long-horizon tasks and repetitive errors across tasks due to the lack of experience transfer. To address these challenges, we propose <strong>UI-Mem</strong>, a novel framework that enhances GUI online RL with a <strong>Hierarchical Experience Memory</strong>. Unlike traditional replay buffers, our memory accumulates structured knowledge, including high-level workflows, subtask skills, and failure patterns. These experiences are stored as parameterized templates that enable cross-task and cross-application transfer.
+        Online Reinforcement Learning (RL) offers a promising paradigm for enhancing GUI agents through direct environment interaction. However, its effectiveness is severely hindered by inefficient credit assignment in long-horizon tasks and repetitive errors across tasks due to the lack of experience transfer. To address these challenges, we propose <strong>UI-Mem</strong>, a novel framework that enhances GUI online RL with a <strong>Hierarchical Experience Memory</strong>. Unlike traditional replay buffers, our memory accumulates structured knowledge, including high-level workflows, subtask skills, and failure patterns. These experiences are stored as parameterized templates that enable cross-task and cross-application transfer. 
       </p>
       <p>
         To effectively integrate memory guidance into online RL, we introduce <strong>Stratified Group Sampling</strong>, which injects varying levels of guidance across trajectories within each rollout group to maintain outcome diversity, driving the unguided policy toward internalizing guided behaviors. Furthermore, a <strong>Self-Evolving Loop</strong> continuously abstracts novel strategies and errors to keep the memory aligned with the agent's evolving policy. Experiments on online GUI benchmarks demonstrate that UI-Mem significantly outperforms traditional RL baselines and static reuse strategies, with strong generalization to unseen applications.
+
       </p>
     </div>
   </div>
 
   <!-- Method Section -->
   <div class="section">
-    <h2 class="section-title">Methodology</h2>
+    <h2 class="section-title">Method</h2>
     
     <div class="image-container">
       <!-- REPLACE WITH YOUR FIGURE 2 IMAGE -->
-      <img src="./static/images/framework.png" alt="UI-Mem Framework Overview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <img src="./static/images/pipeline.pdf" alt="UI-Mem Framework Overview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
       <div class="img-placeholder" style="display:none;">Figure 2: Framework Overview (Place framework.png in static/images)</div>
       <p class="caption">
-        <strong>Figure 2. Overview of the UI-Mem framework.</strong> The agent retrieves hierarchical experience (Workflows, Subtask Skills, Failure Patterns). Stratified Group Sampling generates trajectories under varying guidance levels for Policy Optimization. The Self-Evolving Loop extracts abstract plans to update memory.
+        <strong>Overview of the UI-Mem framework.</strong> Given a task instruction, the agent retrieves hierarchical experience including Workflows, Subtask Skills, and Failure Patterns. We employ \textbf{Stratified Group Sampling} to generate a group of trajectories under varying levels of guidance (Strong, Weak, and No Guidance), enabling effective advantage estimation for \textbf{Policy Optimization}. Finally, a \textbf{Self-Evolving Loop} extracts abstract plans from successful trajectories and diagnoses from failures to update the memory, facilitating continuous refinement and cross-task transfer.
       </p>
     </div>
 
